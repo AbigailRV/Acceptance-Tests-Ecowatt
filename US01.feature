@@ -27,7 +27,19 @@ Feature: ID-US06 - Visualización del consumo actual en tiempo real
   |------------------------------------------------------|
 
 
+
   Given el usuario permanece en la sección "Inicio"
   And el sistema detecta cambios en el consumo energético
   When transcurren 10 segundos
   Then los valores mostrados en pantalla deben actualizarse automáticamente sin necesidad de recargar la página.
+  Scenario 03: Visualización de dispositivos que más energía usan
+    Given el usuario se encuentra en la sección "Inicio"
+    When el sistema carga la información de los dispositivos conectados
+    Then se debe mostrar una lista de los dispositivos que más energía consumen, con la siguiente información:
+      | Dispositivo               | Consumo (kWh) | Tiempo encendido | Estado     |
+      |---------------------------|----------------|------------------|------------|
+      | Televisor Sala            | 1.2 kWh/h      | 5h 30m           | Encendido  |
+      | Aire Acondicionado Hab.   | 0.8 kWh/h      | 3h 15m           | Encendido  |
+      | Refrigerador Cocina       | 0.5 kWh/h      | 24h 00m          | Encendido  |
+      | Computadora               | 0.3 kWh/h      | 7h 45m           | Encendido  |
+    And el usuario debe poder encender o apagar cada dispositivo mediante un botón toggle.
