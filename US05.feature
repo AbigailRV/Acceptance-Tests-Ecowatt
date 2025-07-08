@@ -7,12 +7,24 @@ Feature: ID-US26 - Chatbot de asistencia con IA (Eco Chat)
 
   Scenario 01: Acceso al Chatbot
 
-  |                 Botón de Chatbot                     |
+  |                Botón Flotante de Chatbot             |
   |------------------------------------------------------|
-  | Ícono: [ ] Chatbot                                   |
+  |                               Ícono: [ ] Chatbot     |
   |------------------------------------------------------|
-  |               [Iniciar Chat]                         |
-  |------------------------------------------------------|
+  
+  |-------------------------------------------------------------------------|
+  |EcoChat                                                                  |
+  |-------------------------------------------------------------------------|
+  |                             Ícono: [ ] Chatbot                          |
+  |-------------------------------------------------------------------------|
+  |            "Hola, me llamo Eco, tu asistente energético virtual"        |
+  |                       "¿Cómo puedo ayudarte hoy?"                       |
+  |-------------------------------------------------------------------------|
+  | Vincular dispositivo|Automatizar|Consejos de ahorro|Historial de consumo|
+  |-------------------------------------------------------------------------|
+  | "Pregunta algo"                              | Icono: [] Enviar mensaje |
+  |-------------------------------------------------------------------------|
+
 
   Given el usuario se encuentra en la página de inicio de la aplicación EcoWatt
   When el usuario ve un botón flotante con el ícono del chatbot en la esquina inferior derecha de la pantalla
@@ -38,13 +50,12 @@ Feature: ID-US26 - Chatbot de asistencia con IA (Eco Chat)
 
   Scenario 03: Dudas No Resueltas
 
-  |                 Respuesta del Chatbot                |
-  |------------------------------------------------------|
-  | "Lo siento, no pude ayudarte con esa consulta."      |
-  | "Te recomiendo contactar a soporte técnico."         |
-  |------------------------------------------------------|
-  |               [Contáctanos]                          |
-  |------------------------------------------------------|
+  |                 Respuesta del Chatbot                 |
+  |-------------------------------------------------------|
+  | "Lo siento mucho. Te recomiendo contactar con nuestro |
+  |soporte técnico para una asistencia más personalizada."|
+  |-------------------------------------------------------|
+ 
 
   Given el usuario ha interactuado con "Eco Chat" y ha recibido una respuesta a su consulta
   When la respuesta del bot no satisface la duda del usuario (el usuario selecciona "No" a la pregunta "¿Te ayudó mi respuesta?")
