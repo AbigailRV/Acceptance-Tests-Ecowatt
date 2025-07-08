@@ -1,39 +1,34 @@
-Feature: ID-US02 - Inicio de sesión con correo y contraseña
+Feature: ID-US07 - Indicadores de sobreconsumo en tiempo real
 
-  Como usuario registrado,
-  Quiero iniciar sesión usando mi correo electrónico y contraseña,
-  Para acceder a mi perfil personalizado en la aplicación.
+  Como usuario,
+  Quiero recibir alertas visuales si mi consumo actual es más alto de lo habitual,
+  Para saber cuándo estoy excediéndome y reaccionar a tiempo.
 
-  Scenario 01: Inicio de sesión exitoso
+  Scenario 01: Alerta visual de sobreconsumo
 
-  |                 Iniciar sesión                   |
-  |--------------------------------------------------|
-  | Correo electrónico:  tu.correo@ejemplo.com       |
-  | Contraseña:          ********                    |
-  |--------------------------------------------------|
-  | [✓] Recuérdame | ¿Olvidaste tu contraseña?       |
-  |--------------------------------------------------|
-  |               [Iniciar sesión]                   |
-  |--------------------------------------------------|
+  |                 Consumo de Energia                   |
+  |------------------------------------------------------|
+  | Consumo Acumulado Diario:       2.29 kWh             |
+  | Consumo Acumulado Mensual:      166 kWh              |
+  |------------------------------------------------------|
+  | Consumo Alto - Estás consumiendo más de lo habitual  |
+  |------------------------------------------------------|
 
-  Given el usuario accede a la página de inicio de sesión en la landing page
-  And ingresa su correo electrónico y contraseña correctamente
-  When hace clic en el botón [“Iniciar sesión”]
-  Then el sistema lo redirige automáticamente a la página principal del panel de usuario, donde podrá visualizar su consumo y las funcionalidades de la plataforma.
 
-  Scenario 02: Inicio de sesión fallido por contraseña incorrecta
+  Given el usuario está autenticado
+  And se encuentra en la sección "Inicio"
+  When el sistema detecta que el consumo actual supera el promedio histórico diario
+  Then se muestra un recuadro visible en el panel principal indicando el estado del consumo con un ícono rojo y el mensaje "Estás consumiendo más de lo habitual."
 
-  |                 Iniciar sesión                   |
-  |--------------------------------------------------|
-  | Correo electrónico:  tu.correo@ejemplo.com       |
-  | Contraseña:          ********                    |
-  |--------------------------------------------------|
-  | [✓] Recuérdame | ¿Olvidaste tu contraseña?       |
-  |--------------------------------------------------|
-  |               [Iniciar sesión]                   |
-  |--------------------------------------------------|
+  Scenario 02: Consumo proyectado
 
-  Given el usuario ingresa un [correo válido] pero una [contraseña incorrecta]
-  When hace clic en el botón [“Iniciar sesión”]
-  Then el sistema muestra un mensaje de error [“Correo y/o contraseña incorrectos”]
-  And no permite el acceso al sistema
+  |                 Consumo proyectado                   |
+  |------------------------------------------------------|
+  |     "Podrías consumir un 18% más de lo habitual"     |
+  |------------------------------------------------------|
+
+
+  Given se muestra el estado "Consumo alto" en el panel principal
+  When el usuario visualiza el recuadro
+  Then se muestra un consumo proyectado al costado del mensaje, cómo: “Podrías consumir un 18% más de lo habitual”.
+

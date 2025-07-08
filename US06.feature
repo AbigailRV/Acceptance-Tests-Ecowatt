@@ -1,18 +1,24 @@
-Feature: ID-US29 - Acceder al formulario de inicio de sesión desde la landing page
+Feature: ID-US29 - Acceso al formulario de inicio de sesión desde la landing page
 
-  Como visitante de la landing page de EcoWatt,
-  Quiero poder acceder de forma clara al formulario de inicio de sesión,
-  Para ingresar a mi cuenta existente y comenzar a utilizar la plataforma.
+Como visitante de la landing page de EcoWatt, 
+quiero poder acceder de forma clara al formulario de inicio de sesión, 
+para ingresar a mi cuenta existente y comenzar a utilizar la plataforma..
 
-  Scenario 01: Visualización del formulario de inicio de sesión
+  Scenario 01: Acceso al formulario de inicio de sesión desde la landing page
 
-  Dado que soy un usuario que visita la landing page de EcoWatt
-  Cuando accedo a la URL principal del sitio y doy clic en el botón o enlace de "Iniciar Sesión"
-  Entonces debo ver un formulario con campos para Correo Electrónico y Contraseña, junto con opciones de inicio de sesión alternativo a través de Google y Microsoft
-  Y debe haber un enlace claro para "Recordar contraseña" y para "Registrarse".
+  |              Formulario de Inicio de Sesión          |
+  |------------------------------------------------------|
+  | Correo Electrónico:  tu.correo@ejemplo.com           |
+  | Contraseña:          ********                        |
+  |      [✓] Recuérdame | ¿Olvidaste tu contraseña?      |
+  |------------------------------------------------------|
+  |            [✓] Google     | Microsoft                |
+  |------------------------------------------------------|
+  |                   [Iniciar sesión]                   |
+  |------------------------------------------------------|
 
-  Scenario 02: Inicio de sesión exitoso
-
-  Dado que soy un usuario registrado con credenciales válidas
-  Cuando ingreso mi correo electrónico y contraseña correctamente en el formulario de inicio de sesión y presiono "Iniciar sesión"
-  Entonces debo ser redirigido al dashboard o página principal de la aplicación de EcoWatt.
+  Given el usuario se encuentra en la landing page
+  When el usuario selecciona el botón de inicio de sesión
+  Then el sistema muestra con campos para Correo Electrónico y Contraseña, 
+  junto con opciones de inicio de sesión alternativo a través de Google y Microsoft.
+  And debe haber un enlace claro para "Recordar contraseña" y para "Registrarse".

@@ -1,35 +1,38 @@
-Feature: ID-US06 - Visualización del consumo actual en tiempo real
+Feature: ID-US08 - Consejos personalizados para reducir consumo energético
 
-  Como usuario,
-  Quiero visualizar mi consumo energético actual en tiempo real,
-  Para tomar decisiones inmediatas y reducir el gasto energético.
+  Como usuario autenticado,
+  Quiero acceder rápidamente a consejos personalizados para reducir mi consumo energético,
+  Para mejorar mis hábitos y tomar acciones según mi perfil de uso.
 
-  Scenario 01: Visualización inicial del consumo
+  Scenario 01: Usuario del segmento hogar con suscripción freemium
 
-  |                 Consumo Actual                   |
-  |--------------------------------------------------|
-  | Consumo acumulado diario:      15 kWh            |
-  | Consumo acumulado mensual:    450 kWh            |
-  |--------------------------------------------------|
-  |               [Ver detalles]                     |
-  |--------------------------------------------------|
+  |                 Consejos Personalizados                |
+  |--------------------------------------------------------|
+  | Consejo 1: "Apaga las luces cuando no las uses."       |
+  | Consejo 2: "Utiliza electrodomésticos de bajo consumo."|
+  |--------------------------------------------------------|
+  |               [Ver todos los consejos]                 |
+  |--------------------------------------------------------|
 
-  Given que el usuario ha iniciado sesión correctamente
-  And se encuentra en la sección de "Inicio"
-  When el sistema carga los datos correspondientes
-  Then se debe mostrar en un bloque destacado el consumo acumulado diario y el consumo acumulado mensual.
+  Given el usuario está autenticado
+  And pertenece al segmento "hogar" y tiene una suscripción freemium
+  When se encuentra en la página "Inicio"
+  And va a la sección "Consejos"
+  Then el sistema muestra una lista de recomendaciones personalizadas del día
+  And cada recomendación incluye texto breve y un ícono representativo
 
-  Scenario 02: Actualización automática del consumo
+  Scenario 02: Usuario del segmento negocio con suscripción premium
 
-  |                 Consumo Actual                   |
-  |--------------------------------------------------|
-  | Consumo acumulado diario:      16 kWh            |
-  | Consumo acumulado mensual:    451 kWh            |
-  |--------------------------------------------------|
-  |               [Ver detalles]                     |
-  |--------------------------------------------------|
+  |                 Consejos Personalizados               |
+  |-------------------------------------------------------|
+  | Consejo 1: "Optimiza el uso de equipos de oficina."   |
+  | Consejo 2: "Programa el aire acondicionado a 24°C."   |
+  |-------------------------------------------------------|
+  |               [Ver todos los consejos]                |
+  |-------------------------------------------------------|
 
-  Given que el usuario permanece en la sección de "Inicio"
-  And el sistema detecta cambios en el consumo energético
-  When transcurren 10 segundos
-  Then los valores mostrados en pantalla deben actualizarse automáticamente sin necesidad de recargar la página.
+  Given el usuario está autenticado
+  And pertenece al segmento "hogar" con suscripción premium o al segmento negocio
+  When el usuario navega a la sección "Consejos"
+  Then el sistema muestra una lista de recomendaciones personalizadas del día
+  And cada recomendación incluye un texto breve y un ícono representativo

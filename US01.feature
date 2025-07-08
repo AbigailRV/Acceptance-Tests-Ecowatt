@@ -1,44 +1,33 @@
-Feature: ID-US01 - Registro de Nuevos Usuarios
+Feature: ID-US06 - Visualización del consumo actual en tiempo real
 
-  Como nuevo usuario de EcoWatt
-  Quiero registrarme con mis datos personales
-  Para acceder a las funcionalidades de la plataforma.
+  Como usuario,
+  Quiero visualizar mi consumo energético actual en tiempo real,
+  Para tomar decisiones inmediatas y reducir el gasto energético.
 
-  Scenario 01: Registro exitoso para un nuevo usuario
+  Scenario 01: Visualización inicial del consumo
 
-  |                 Crear Cuenta                     |
-  |--------------------------------------------------|
-  | Nombre Completo:      Andrea Torres              |
-  | Correo Electrónico:   andrea.torres@gmail.com    |
-  | Contraseña:           ********                   |
-  | Confirmar Contraseña: ********                   |
-  |--------------------------------------------------|
-  | Tipo de registro:    (●) Hogar  ( ) Negocio      |
-  |--------------------------------------------------|
-  |               [Crear cuenta]                     |
-  |--------------------------------------------------|
+  |                 Consumo de Energia                   |
+  |------------------------------------------------------|
+  | Consumo Acumulado Diario:       2.33 kWh             |
+  | Consumo Acumulado Mensual:      168 kWh              |
+  |------------------------------------------------------|
 
-  Given el usuario accede a la página "Crear cuenta"
-  And completa todos los campos requeridos (nombre, correo, contraseña y confirmación de contraseña)
-  When hace clic en el botón [“Crear cuenta”]
-  Then el sistema valida los datos, redirige al usuario a la página principal de la plataforma
-  And le da acceso a las funcionalidades de la plataforma.
 
-  Scenario 02: Registro con datos inválidos o incompletos
+  Given el usuario ha iniciado sesión correctamente
+  And se encuentra en la sección "Inicio"
+  When el sistema carga los datos correspondientes
+  Then se debe mostrar en un bloque destacado el consumo acumulado diario y el consumo acumulado mensual.
 
-  |                 Crear Cuenta                     |
-  |--------------------------------------------------|
-  | Nombre Completo:      Andrea Torres              |
-  | Correo Electrónico:   andrea.torres@gmail.com    |
-  | Contraseña:           ********                   |
-  | Confirmar Contraseña: ********                   |
-  |--------------------------------------------------|
-  | Tipo de registro:    (●) Hogar  ( ) Negocio      |
-  |--------------------------------------------------|
-  |               [Crear cuenta]                     |
-  |--------------------------------------------------|
+  Scenario 02: Actualización automática del consumo
 
-  Given el usuario ha ingresado información inválida o incompleta (como un correo electrónico incorrecto o campo vacío)
-  When presiona el botón de registro
-  Then el sistema muestra un mensaje de error indicando qué campo necesita corrección
-  And no permite avanzar hasta que todos los datos sean correctos.
+  |                 Consumo de Energia                   |
+  |------------------------------------------------------|
+  | Consumo Acumulado Diario:       2.30 kWh             |
+  | Consumo Acumulado Mensual:      167 kWh              |
+  |------------------------------------------------------|
+
+
+  Given el usuario permanece en la sección "Inicio"
+  And el sistema detecta cambios en el consumo energético
+  When transcurren 10 segundos
+  Then los valores mostrados en pantalla deben actualizarse automáticamente sin necesidad de recargar la página.

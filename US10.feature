@@ -1,17 +1,26 @@
-Feature: ID-US43 - Diseño responsivo de la landing page
+Feature: ID-US45 - Comparación de diversos beneficios por tipo de usuario
 
-  Como visitante de la landing page
-  Quiero que la landing page se adapte a cualquier pantalla
-  Para navegar desde cualquier dispositivo
+  Como visitante,
+  Quiero comparar beneficios según el tipo de usuario,
+  Para identificar qué plan me conviene.
 
-  Scenario 1: Usuario accede desde una computadora
+  Scenario 01: Usuario accede a la tabla comparativa de beneficios por tipo de usuario
 
-  Given que el usuario abre la página desde un navegador de escritorio
-  When la página se carga
-  Then el sistema muestra el diseño adaptado con secciones distribuidas horizontalmente
+  |                                    Comparación de Beneficios                                  |
+  |-----------------------------------------------------------------------------------------------|
+  | Funcionalidad                             | Hogar Premium | Hogar Premium | Pequeños Negocios |
+  |--------------------------------------------|---------------|---------------|------------------|
+  | Visualización de consumo en tiempo real   |      ✓        |      ✓        |         ✓         |
+  | Alertas básicas de alto consumo           |      ✓        |      ✓        |         ✓         |
+  | Recomendaciones energéticas               |   limitado    |      ✓        |         ✓         |
+  | Automatización de dispositivos con IA     |      —        |      —        |         ✓         |
+  | Gestión de múltiples dispositivos         |   limitado    |      ✓        |         ✓         |
+  | Acceso a reportes                         |      —        |      —        |         ✓         |
+  | Gestión de hasta 3 sucursales             |      —        |      —        |         ✓         |
+  |-----------------------------------------------------------------------------------------------|
 
-  Scenario 2: Usuario accede desde un dispositivo móvil
+  Given el usuario está en la sección “Servicios”
+  When visualiza la parte de “Descubre los beneficios”
+  Then el sistema muestra una tabla con la comparación de beneficios entre los diferentes tipos de usuario
+  And permite al usuario comparar los planes disponibles: Hogar Premium, Hogar Premium, y Pequeños Negocios.
 
-  Given que el usuario accede desde un celular
-  When se carga la landing page
-  Then el sistema reorganiza las secciones en una vista vertical optimizada

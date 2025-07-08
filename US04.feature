@@ -1,40 +1,39 @@
-Feature: ID-US04 - Indicadores de Sobreconsumo
+Feature: ID-US17 - Configurar automatizaciones del usuario a través de la IA en los dispositivos
 
-Como usuario 
-Quiero recibir alertas visuales si mi consumo actual es más alto de lo habitual 
-Para saber cuándo estoy excediéndome y reaccionar a tiempo
+  Como usuario de pequeño negocio o premium,
+  Quiero configurar automatizaciones en mis dispositivos inteligentes con la aplicación,
+  Para evitar consumir energía innecesariamente.
 
+  Scenario 01: Configuración de automatización de un dispositivo inteligente
 
-Scenario 01: Consumo normal con estado verde
+  |                 Dispositivo Vinculado                |
+  |------------------------------------------------------|
+  | Nombre: Televisor Sala                               |
+  | Consumo Actual: 1.2 kW/h                             |
+  |------------------------------------------------------|
+  |               [Automatizar con IA]                   |
+  |------------------------------------------------------|
 
-|                  Dashboard                         |
-|----------------------------------------------------|
-| Estado actual: Consumo normal                      |
-| Recomendación: Sigue así                           |
+  Given el usuario está autenticado
+  And se encuentra en la sección "Dispositivos vinculados"
+  When selecciona uno de sus dispositivos
+  And selecciona la opción "Automatizar con IA"
+  Then el usuario es redirigido al apartado del Chatbot
+  And podrá mandar un mensaje para ingresar su requerimiento.
 
-Given el usuario accede a su panel principal
-When el consumo está dentro del límite esperado
-Then se muestra un estado verde con mensaje positivo
+  Scenario 02: Configurar automatización desde el chatbot en la pantalla de inicio
 
+  |                        Mensaje Chatbot                        |
+  |---------------------------------------------------------------|
+  | "Hola, ¿qué dispositivo te gustaría automatizar?"             |
+  | "Por favor, ingresa las instrucciones para la automatización."|
+  |---------------------------------------------------------------|
+  |                           [Enviar]                            |
+  |---------------------------------------------------------------|
 
-Scenario 02: Alerta visual de sobreconsumo
-
-|                  Dashboard                         |
------------------------------------------------------
-| Estado actual: Sobreconsumo detectado              |
-| Mensaje: Estás consumiendo más de lo habitual      |
-
-Given el sistema detecta que el consumo ha aumentado
-When el usuario accede al dashboard
-Then se muestra una alerta roja indicando sobreconsumo
-
-
-Scenario 03: Notificación emergente por sobreuso
-
-|              Notificación Emergente               |
-|---------------------------------------------------|
-| Tu consumo ha superado el límite diario           |
-| Revisa tus dispositivos activos                   |
-
-Given el sistema calcula un pico de consumo
-Then se muestra una notificación emergente de advertencia
+  Given el usuario está autenticado en la plataforma
+  And se encuentra en la pantalla de inicio
+  When el usuario abre el chatbot desde esta vista
+  And escribe un mensaje solicitando automatizar uno o más dispositivos
+  Then el sistema interpreta el requerimiento usando IA
+  And permite al usuario confirmar y aplicar las automatizaciones sugeridas.

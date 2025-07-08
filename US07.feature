@@ -1,17 +1,52 @@
-Feature: ID-US39 - Acceder a la sección "Sobre Nosotros"
+Feature: ID-US30 - Registrar una nueva cuenta de usuario en EcoWatt
 
-  Como visitante de la landing page
-  Quiero acceder fácilmente a la sección “Sobre Nosotros”
-  Para conocer los valores, misión y visión de EcoWatt
+  Como nuevo usuario de EcoWatt,
+  Quiero crear una cuenta con mis datos personales,
+  Para acceder a las funcionalidades de la plataforma.
 
-  Scenario 1: Usuario accede a la sección Sobre Nosotros mediante scroll
+   Scenario 01: Acceso al formulario de registro
+ 
+  |                     Registrate                       |
+  |------------------------------------------------------|
 
-  Given que el usuario está navegando por la landing page
-  When el usuario hace scroll hacia abajo
-  Then el sistema muestra la sección “Sobre Nosotros” con visión, misión y valores de nuestra plataforma.
+  Given el usuario hace clic en el enlace "Regístrate".
+  Then debo ser redirigido a un formulario de registro.
 
-  Scenario 2: Usuario accede a la sección desde el menú de navegación
+  Scenario 02: Registro exitoso para un nuevo usuario
 
-  Given que el usuario visualiza el navbar en la parte superior
-  When hace clic en el botón “Sobre Nosotros”
-  Then el sistema hace scroll automático hacia dicha sección y muestra la sección.
+  |                 Crear Cuenta                         |
+  |------------------------------------------------------|
+  | Nombre Completo:      Andrea Torres                  |
+  | Correo Electrónico:   andrea.torres@gmail.com        |
+  | Contraseña:           ********                       |
+  | Confirmar Contraseña: ********                       |
+  |------------------------------------------------------|
+  | Tipo de registro:    (●) Hogar  ( ) Negocio          |
+  |------------------------------------------------------|
+  |               [Crear cuenta]                         |
+  |------------------------------------------------------|
+
+  Given el usuario accede a la página "Crear cuenta"
+  And completa todos los campos requeridos (nombre, correo, contraseña y confirmación de contraseña)
+  When hace clic en el botón [“Crear cuenta”]
+  Then el sistema valida los datos, redirige al usuario a la página principal de la plataforma
+  And le da acceso a las funcionalidades de la plataforma.
+
+  Scenario 03: Registro con datos inválidos o incompletos
+
+  |                 Crear Cuenta                         |
+  |------------------------------------------------------|
+  | Nombre Completo:      Andrea Torres                  |
+  | Correo Electrónico:   andrea.torres@gmail.com        |
+  | Contraseña:           ********                       |
+  | Confirmar Contraseña: **********                     |
+  |------------------------------------------------------|
+  | Tipo de registro:    (●) Hogar  ( ) Negocio          |
+  |------------------------------------------------------|
+  |               [Crear cuenta]                         |
+  |------------------------------------------------------|
+
+  Given el usuario ha ingresado información inválida o incompleta (como un correo electrónico incorrecto o campo vacío)
+  When presiona el botón de registro
+  Then el sistema muestra un mensaje de error indicando qué campo necesita corrección
+  And no permite avanzar hasta que todos los datos sean correctos.

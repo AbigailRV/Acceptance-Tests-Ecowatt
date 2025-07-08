@@ -1,51 +1,37 @@
-Feature: ID-US09 - Chatbot de Soporte
+Feature: ID-US43 - Diseño responsivo de la landing page
 
-Como usuario 
-Quiero poder chatear con un asistente virtual dentro de la app
-Para resolver dudas de funcionamiento o fallas de manera rápida
+  Como visitante de la landing page de EcoWatt,
+  Quiero que la landing page se adapte a cualquier pantalla,
+  Para navegar desde cualquier dispositivo.
 
+  Scenario 1: Usuario accede desde una computadora
 
-Scenario 01: Consulta sobre consumo y respuesta automática del bot
+  |             Landing Page Adaptada a Computadora      |
+  |------------------------------------------------------|
+  | Logo EcoWatt                                         |
+  | Título: Consumo de Energía                           |
+  | Texto: Tu consumo energético al alcance de tu mano.  |
+  | Botón: [Ver más]                                     |
+  |------------------------------------------------------|
+  | Secciones dispuestas horizontalmente                 |
+  |------------------------------------------------------|
 
-Given el usuario accede al botón flotante del chatbot “Eco”
-And escribe una pregunta sobre su consumo energético:
+  Given el usuario abre la página desde un navegador de escritorio
+  When la página se carga
+  Then el sistema muestra el diseño adaptado con secciones distribuidas horizontalmente
 
-|                     Chatbot                        |
-|----------------------------------------------------|
-| Usuario: ¿Por qué aumentó mi consumo este mes?     |
-| Bot:  Estoy analizando tus datos...                |
-| Bot:  Has usado más el aire acondicionado este mes |
-|----------------------------------------------------|
+  Scenario 2: Usuario accede desde un dispositivo móvil
 
-Then el chatbot responde con análisis basado en los dispositivos activos
+  |              Landing Page Adaptada a Móvil           |
+  |------------------------------------------------------|
+  | Logo EcoWatt                                         |
+  | Título: Consumo de Energía                           |
+  | Texto: Tu consumo energético al alcance de tu mano.  |
+  | Botón: [Ver más]                                     |
+  |------------------------------------------------------|
+  | Secciones reorganizadas en vista vertical            |
+  |------------------------------------------------------|
 
-
-Scenario 02: Solicitud de ayuda sobre recompensas
-
-Given el usuario está en la sección de recompensas
-And activa el chatbot con la siguiente consulta:
-
-|                       Chatbot                        |
-|------------------------------------------------------|
-| Usuario: ¿Cómo canjeo mis puntos?                    |
-| Bot: Ve a la pestaña de Recompensas y toca “Canjear” |
-| Bot: Necesitas tener al menos 1300 puntos            |
-|------------------------------------------------------|
-
-Then el bot proporciona instrucciones claras para el canje
-
-
-Scenario 03: Derivación a soporte humano por pregunta no reconocida
-
-Given el usuario pregunta algo fuera del alcance del bot:
-
-|                     Chatbot                        |
-|----------------------------------------------------|
-| Usuario: ¿Cómo puedo instalar paneles solares?     |
-| Bot: Disculpa, no tengo esa información por ahora  |
-| Bot: ¿Te gustaría contactar a soporte humano?      |
-|                  [Sí, contactar]                   |
-|----------------------------------------------------|
-
-When el usuario presiona "Sí, contactar"
-Then se abre un formulario de contacto con soporte técnico
+  Given el usuario accede desde un celular
+  When se carga la landing page
+  Then el sistema reorganiza las secciones en una vista vertical optimizada
