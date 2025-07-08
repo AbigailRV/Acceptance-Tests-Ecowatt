@@ -1,7 +1,7 @@
 
 Feature: ID-US26 - Chatbot de asistencia con IA (Eco Chat)
 
-  Como usuario de EcoWatt,
+  Como usuario,
   Quiero poder interactuar con "Eco Chat", el asistente virtual de IA, a través de un botón flotante en la página de inicio,
   Para obtener respuestas rápidas y asistencia sobre el funcionamiento de la aplicación, el manejo de mis dispositivos y consejos de ahorro de energía.
 
