@@ -61,4 +61,4 @@ Feature: ID-US26 - Chatbot de asistencia con IA (Eco Chat)
   When la respuesta del bot no satisface la duda del usuario (el usuario selecciona "No" a la pregunta "¿Te ayudó mi respuesta?")
   Then el bot le pide al usuario que califique la atención recibida (con estrellas)
   And una vez calificado, el bot se disculpa por no haber podido ayudar y recomienda al usuario contactar con soporte técnico para una asistencia más personalizada
-  And los campos de entrada y los botones de sugerencia vuelven a estar visibles.
+  And los campos de entrada vuelven a estar visibles.
