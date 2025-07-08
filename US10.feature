@@ -1,57 +1,17 @@
-Feature: ID-US10 - Cambio de Plan de Suscripción
+Feature: ID-US43 - Diseño responsivo de la landing page
 
-Como usuario
-Quiero cambiar mi plan de suscripción
-Para acceder a nuevas funcionalidades según mis necesidades.
+  Como visitante de la landing page
+  Quiero que la landing page se adapte a cualquier pantalla
+  Para navegar desde cualquier dispositivo
 
-Scenario 01: Cambio exitoso de plan Hogar a Negocio
+  Scenario 1: Usuario accede desde una computadora
 
-Given el usuario accede a la sección "Mi Plan"
-And visualiza la siguiente información:
+  Given que el usuario abre la página desde un navegador de escritorio
+  When la página se carga
+  Then el sistema muestra el diseño adaptado con secciones distribuidas horizontalmente
 
-|                 Tu Plan Actual                   |
-|--------------------------------------------------|
-| Plan: Hogar                                      |
-| Precio: Gratis                                   |
-|--------------------------------------------------|
-| Opciones Disponibles:                            |
-| Cambiar a Plan Negocio                           |
-| Precio: S/20 mensual                             |
-|--------------------------------------------------|
-|               [Actualizar Plan]                  |
-|--------------------------------------------------|
+  Scenario 2: Usuario accede desde un dispositivo móvil
 
-When selecciona "Plan Negocio" y presiona "Actualizar Plan"
-Then el sistema redirige a la pasarela de pago
-And al completar el pago, muestra:
-
->  Tu suscripción ha sido actualizada exitosamente
-
-
-Scenario 02: Cancelación del cambio de plan antes del pago
-
-Given el usuario inicia el proceso para cambiar de plan
-And llega a la pantalla de confirmación de pago
-When decide cancelar la operación
-Then el sistema muestra:
-
->  Cambios no realizados  
->  Tu plan actual se mantiene sin modificaciones
-
-And redirige al usuario al panel principal
-
-
-Scenario 03: Visualización de beneficios por tipo de plan
-
-Given el usuario entra a la sección “Planes y Beneficios”
-Then se muestra la tabla comparativa:
-
-|             Comparativa de Planes                 |
-|---------------------------|-----------------------|
-| Plan Hogar                | Plan Negocio          |
-|---------------------------|-----------------------|
-| Gráfico básico de consumo | Predicción avanzada   |
-| 1 usuario                 | Multiusuario          |
-| Sin costo                 | S/20 mensual          |
-
-And el usuario puede evaluar opciones antes de confirmar cambios
+  Given que el usuario accede desde un celular
+  When se carga la landing page
+  Then el sistema reorganiza las secciones en una vista vertical optimizada

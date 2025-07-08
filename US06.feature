@@ -1,55 +1,18 @@
-Feature: ID-US06 - Ver Dispositivos Vinculados
+Feature: ID-US29 - Acceder al formulario de inicio de sesión desde la landing page
 
-Como usuario 
-Quiero ver una lista de mis dispositivos inteligentes vinculados 
-Para saber cuáles están activos y conectados correctamente
+  Como visitante de la landing page de EcoWatt,
+  Quiero poder acceder de forma clara al formulario de inicio de sesión,
+  Para ingresar a mi cuenta existente y comenzar a utilizar la plataforma.
 
+  Scenario 01: Visualización del formulario de inicio de sesión
 
-Scenario 01: Listado de dispositivos IoT conectados
+  Dado que soy un usuario que visita la landing page de EcoWatt
+  Cuando accedo a la URL principal del sitio y doy clic en el botón o enlace de "Iniciar Sesión"
+  Entonces debo ver un formulario con campos para Correo Electrónico y Contraseña, junto con opciones de inicio de sesión alternativo a través de Google y Microsoft
+  Y debe haber un enlace claro para "Recordar contraseña" y para "Registrarse".
 
-Given el usuario accede a la sección "Dispositivos IoT"
-And visualiza el siguiente listado:
+  Scenario 02: Inicio de sesión exitoso
 
-|            Dispositivos Conectados               |
-|--------------------------------------------------|
-| Televisor       -  Encendido  -  1.5 kWh         |
-| Aire Acond.     -  Apagado    -  3.2 kWh         |
-| Lámpara LED     -  Encendido  -  0.4 kWh         |
-| Refrigeradora   -  Encendido  -  2.1 kWh         |
-|--------------------------------------------------|
-
-When observa la lista
-Then puede ver el estado y consumo actual de cada dispositivo
-
-
-Scenario 02: Detalle individual de un dispositivo
-
-Given el usuario selecciona un dispositivo de la lista (por ejemplo: "Televisor")
-Then se muestra la siguiente pantalla de detalle:
-
-|              Detalle del Dispositivo             |
-|--------------------------------------------------|
-| Nombre:           Televisor                      |
-| Estado:           Encendido                      |
-| Consumo Diario:   1.5 kWh                        |
-| Día de mayor uso: Miércoles                      |
-| Botón: [Automatizar con IA]                      |
-|--------------------------------------------------|
-
-And puede activar opciones de automatización o editar configuración
-
-
-Scenario 03: Visualización de dispositivos por sucursal
-
-Given que el usuario pertenece a una cuenta con múltiples sucursales
-When selecciona una sucursal (por ejemplo: "Oficina Lima")
-Then el sistema muestra los dispositivos vinculados a esa sede:
-
-|              Sucursal: Oficina Lima              |
-|--------------------------------------------------|
-| Dispositivos: 5 conectados                       |
-| Consumo total: 20.4 kWh                          |
-| Promedio por dispositivo: 4.1 kWh                |
-|--------------------------------------------------|
-
-And puede comparar entre sucursales para optimizar consumo
+  Dado que soy un usuario registrado con credenciales válidas
+  Cuando ingreso mi correo electrónico y contraseña correctamente en el formulario de inicio de sesión y presiono "Iniciar sesión"
+  Entonces debo ser redirigido al dashboard o página principal de la aplicación de EcoWatt.

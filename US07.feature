@@ -1,59 +1,17 @@
-Feature: ID-US07 - Vincular Dispositivo con Código QR
+Feature: ID-US39 - Acceder a la sección "Sobre Nosotros"
 
-Como usuario, 
-Quiero vincular un dispositivo utilizando métodos como búsqueda por Bluetooth, escaneo de código QR o ingreso de código manual, 
-Para facilitar su conexión sin complicaciones técnicas.
+  Como visitante de la landing page
+  Quiero acceder fácilmente a la sección “Sobre Nosotros”
+  Para conocer los valores, misión y visión de EcoWatt
 
+  Scenario 1: Usuario accede a la sección Sobre Nosotros mediante scroll
 
-Scenario 01: Escaneo exitoso de dispositivo mediante código QR
+  Given que el usuario está navegando por la landing page
+  When el usuario hace scroll hacia abajo
+  Then el sistema muestra la sección “Sobre Nosotros” con visión, misión y valores de nuestra plataforma.
 
-Given el usuario accede a la opción "Agregar dispositivo"
-And selecciona el método "Escanear código QR"
-And visualiza la siguiente pantalla:
+  Scenario 2: Usuario accede a la sección desde el menú de navegación
 
-|                Vincular Dispositivo              |
-|--------------------------------------------------|
-| Método: [Escanear código QR]                     | 
-| Código detectado: ✔ 2312DSS                      |
-|--------------------------------------------------|
-|               [Vincular dispositivo]             |
-|--------------------------------------------------|
-
-When el sistema detecta el código correctamente
-Then se muestra el botón para vincular
-And el dispositivo se añade exitosamente a la lista
-
-
-Scenario 02: Error en la lectura del código QR
-
-Given el usuario intenta escanear un código dañado o ilegible
-And se muestra lo siguiente en la pantalla:
-
-|                Vincular Dispositivo              |
-|--------------------------------------------------|
-| Método: [Escanear código QR]                     | 
-| Código detectado: ✖                              |
-|--------------------------------------------------|
-| X Código no válido o ilegible                    |
-|--------------------------------------------------|
-
-Then el sistema muestra un mensaje de error
-And no permite continuar con la vinculación
-
-
-Scenario 03: Vinculación manual del dispositivo por código
-
-Given el usuario no puede escanear el QR y elige la opción manual
-And completa el siguiente formulario:
-
-|                Vincular Dispositivo              |
-|--------------------------------------------------|
-| Método: [Escanear código manualmente]            | 
-| Ingrese código: 2312DSS                          |
-|--------------------------------------------------|
-|               [Vincular dispositivo]             |
-|--------------------------------------------------|
-
-When presiona el botón "Vincular dispositivo"
-Then el sistema valida el código ingresado
-And se confirma la vinculación exitosa
+  Given que el usuario visualiza el navbar en la parte superior
+  When hace clic en el botón “Sobre Nosotros”
+  Then el sistema hace scroll automático hacia dicha sección y muestra la sección.
